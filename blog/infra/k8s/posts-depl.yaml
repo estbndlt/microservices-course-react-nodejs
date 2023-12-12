@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: posts
-          image: estbndlt/posts:0.0.1
+          image: estbndlt/posts:0.0.5
