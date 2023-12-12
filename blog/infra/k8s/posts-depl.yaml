@@ -14,4 +14,13 @@ spec:
     spec:
       containers:
         - name: posts
-          image: estbndlt/posts:0.0.5
+          image: estbndlt/posts
+          # steps to run
+          # - update code
+          # - build the docker image with latest tag in service directory
+          #   (default if not specified with estbndlt/posts:latest)
+          #   - command: `docker build -t estbndlt/posts .`
+          # - push image to docker hub in service directory
+          #   - command: `docker push estbndlt/posts`
+          # - run the command to rollout deployment in k8s directory
+          #   - command: `kubectl rollout restart deployment posts-depl`
