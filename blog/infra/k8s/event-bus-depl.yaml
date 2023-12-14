@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+        - name: event-bus
+          image: estbndlt/event-bus
+          # steps to run
+          # - update code
+          # - build the docker image with latest tag in service directory
+          #   (default if not specified with estbndlt/event-bus:latest)
+          #   - command: `docker build -t estbndlt/event-bus .`
+          # - push image to docker hub in service directory
+          #   - command: `docker push estbndlt/event-bus`
+          # - create the pod in k8s directory
+          #   - command: `kubectl apply -f event-bus-depl.yaml`
+          # - run the command to rollout deployment in k8s directory
+          #   - command: `kubectl rollout restart deployment event-bus-depl`
