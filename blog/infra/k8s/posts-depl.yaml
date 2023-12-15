@@ -24,3 +24,18 @@ spec:
           #   - command: `docker push estbndlt/posts`
           # - run the command to rollout deployment in k8s directory
           #   - command: `kubectl rollout restart deployment posts-depl`
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  type: ClusterIP
+  # `type: ClusterIP` is the default and is not needed
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

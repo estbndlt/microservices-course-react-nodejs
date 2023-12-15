@@ -26,3 +26,18 @@ spec:
           #   - command: `kubectl apply -f event-bus-depl.yaml`
           # - run the command to rollout deployment in k8s directory
           #   - command: `kubectl rollout restart deployment event-bus-depl`
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  type: ClusterIP
+  # `type: ClusterIP` is the default and is not needed
+  selector:
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005
