@@ -1,6 +1,6 @@
 # NodePort Service
 
-Node ports are typically used to communicate with a single service and is mainly done in dev environments only.
+Node ports are typically used to communicate with a single service and is mainly done in dev environments only. A posts node port service is made so we can send requests to the endpoint through postman.
 
 ## Create the deployment
 
@@ -60,3 +60,11 @@ Events:                   <none>
 ```
 
 - Note: `localhost:30221/posts` will be the port open to communicate the service.
+
+# Cluster IP Service
+
+Used to communicate internally across microservices. Create every service using the following command:
+
+```
+kubectl apply -f .
+```

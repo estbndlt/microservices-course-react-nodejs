@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: query
+  template:
+    metadata:
+      labels:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: estbndlt/query
+          # steps to run
+          # - update code
+          # - build the docker image with latest tag in service directory
+          #   (default if not specified with estbndlt/query:latest)
+          #   - command: `docker build -t estbndlt/query .`
+          # - push image to docker hub in service directory
+          #   - command: `docker push estbndlt/query`
+          # - create the pod in k8s directory
+          #   - command: `kubectl apply -f query-depl.yaml`
+          # - run the command to rollout deployment in k8s directory
+          #   - command: `kubectl rollout restart deployment query-depl`
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-srv
+spec:
+  type: ClusterIP
+  # `type: ClusterIP` is the default and is not needed
+  selector:
+    app: query
+  ports:
+    - name: query
+      protocol: TCP
+      port: 4002
+      targetPort: 4002

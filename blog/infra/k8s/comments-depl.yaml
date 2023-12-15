@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comments
+  template:
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: estbndlt/comments
+          # steps to run
+          # - update code
+          # - build the docker image with latest tag in service directory
+          #   (default if not specified with estbndlt/comments:latest)
+          #   - command: `docker build -t estbndlt/comments .`
+          # - push image to docker hub in service directory
+          #   - command: `docker push estbndlt/comments`
+          # - create the pod in k8s directory
+          #   - command: `kubectl apply -f comments-depl.yaml`
+          # - run the command to rollout deployment in k8s directory
+          #   - command: `kubectl rollout restart deployment comments-depl`
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+spec:
+  type: ClusterIP
+  # `type: ClusterIP` is the default and is not needed
+  selector:
+    app: comments
+  ports:
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
