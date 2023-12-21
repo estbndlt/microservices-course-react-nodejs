@@ -1,10 +1,9 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-srv
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
     - host: posts.com
       http:
@@ -12,5 +11,7 @@ spec:
           - path: /posts
             pathType: ImplementationSpecific
             backend:
-              serviceName: posts-clusterip-srv
-              servicePort: 4000
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000
