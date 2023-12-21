@@ -5,6 +5,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    # kubectl apply and add the following to /etc/hosts:
+    # 127.0.0.1 posts.com
     - host: posts.com
       http:
         paths:
