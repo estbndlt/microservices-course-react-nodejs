@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: estbndlt/auth
+          # steps to run
+          # - update code
+          # - build the docker image with latest tag in service directory
+          #   (default if not specified with estbndlt/auth:latest)
+          #   - command: `docker build -t estbndlt/auth .`
+          # - push image to docker hub in service directory
+          #   - command: `docker push estbndlt/auth`
+          # - create the pod in k8s directory
+          #   - command: `kubectl apply -f auth-depl.yaml`
+          # - run the command to rollout deployment in k8s directory
+          #   - command: `kubectl rollout restart deployment auth-depl`
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-srv
+spec:
+  type: ClusterIP
+  # `type: ClusterIP` is the default and is not needed
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
