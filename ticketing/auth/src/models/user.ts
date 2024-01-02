@@ -9,13 +9,13 @@ interface UserAttrs {
 
 // An interface that describes the properties
 // that a User Model has
-interface UserModel extends Model<any> {
+interface UserModel extends Model<UserDocument> {
   build(attrs: UserAttrs): any;
 }
 
 // An interface that describes the properties
 // that a User Document has
-interface UserDocument extends Document<any> {
+interface UserDocument extends Document {
   email: string;
   password: string;
 }
