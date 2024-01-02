@@ -10,10 +10,9 @@ export const errorHandler = (
 ) => {
   if (err instanceof RequestValidationError) {
     const formattedErrors = err.errors.map((error) => {
-      return {
-        message: error.msg,
-        field: error.param,
-      };
+      if (error.type === 'field') {
+        return { message: error.msg, field: error.path };
+      }
     });
 
     return res.status(400).send({ errors: formattedErrors });
