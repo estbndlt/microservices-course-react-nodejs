@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { RequestValidationError } from '../errors/request-validation-error';
-import { DatabaseConnectionError } from '../errors/database-connection-error';
+import { User } from '../models/user';
 
 const router = express.Router();
 
@@ -21,8 +21,19 @@ router.post(
       throw new RequestValidationError(errors.array());
     }
 
-    console.log('creating a user...');
-    throw new DatabaseConnectionError();
+    const { email, password } = req.body;
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      console.log('email in use');
+      return res.send({});
+    }
+
+    const user = User.build({ email, password });
+    await user.save();
+
+    return res.status(201).send(user);
   }
 );
 
