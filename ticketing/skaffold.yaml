@@ -4,13 +4,13 @@ manifests:
   rawYaml:
     - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: ticketing-dev-409907
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: ticketing-dev-409907
   artifacts:
-    # - image: estbndlt/auth
-    - image: us.gcr.io/ticketing-dev-409907/auth
+    - image: estbndlt/auth
+      # - image: us.gcr.io/ticketing-dev-409907/auth
       context: auth
       sync:
         manual:

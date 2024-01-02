@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: auth
-          # image: estbndlt/auth
-          image: us.gcr.io/ticketing-dev-409907/auth
+          image: estbndlt/auth
+          # image: us.gcr.io/ticketing-dev-409907/auth
           # steps to run
           # - update code
           # - build the docker image with latest tag in service directory
