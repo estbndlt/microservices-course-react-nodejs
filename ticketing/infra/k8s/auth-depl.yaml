@@ -16,6 +16,14 @@ spec:
         - name: auth
           image: estbndlt/auth
           # image: us.gcr.io/ticketing-dev-409907/auth
+          env:
+            - name: JWT_KEY
+              # command: `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=SECRET`
+              # where SECRET is a value you choose
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
           # steps to run
           # - update code
           # - build the docker image with latest tag in service directory
