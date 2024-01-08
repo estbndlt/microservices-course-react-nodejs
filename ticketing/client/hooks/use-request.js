@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export default ({ url, method, body }) => {
+export default ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
   const doRequest = async () => {
@@ -9,6 +9,11 @@ export default ({ url, method, body }) => {
       setErrors(null);
 
       const rsp = await axios[method](url, body);
+
+      if (onSuccess) {
+        onSuccess(rsp.data);
+      }
+
       return rsp.data;
     } catch (e) {
       setErrors(
