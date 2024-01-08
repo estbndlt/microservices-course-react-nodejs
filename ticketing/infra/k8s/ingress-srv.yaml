@@ -11,7 +11,8 @@ spec:
     # 127.0.0.1 ticketing.dev
     # if unsafe warnings/errors in chrome, type "thisisunsafe" with the
     # chrome instance active
-    - host: ticketing-local.dev
+    - host: ticketing.dev
+      # - host: ticketing-local.dev
       # - host: ticketing-cloud.dev
       http:
         paths:

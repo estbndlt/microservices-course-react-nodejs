@@ -19,6 +19,7 @@ spec:
           env:
             - name: JWT_KEY
               # command: `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=SECRET`
+              # command: `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`
               # where SECRET is a value you choose
               valueFrom:
                 secretKeyRef:
