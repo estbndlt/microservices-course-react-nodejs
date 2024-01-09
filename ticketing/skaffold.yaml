@@ -26,3 +26,11 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
+    - image: estbndlt/tickets
+      context: tickets
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
