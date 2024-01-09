@@ -17,6 +17,8 @@ spec:
           image: estbndlt/auth
           # image: us.gcr.io/ticketing-dev-409907/auth
           env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               # command: `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=SECRET`
               # command: `kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf`
