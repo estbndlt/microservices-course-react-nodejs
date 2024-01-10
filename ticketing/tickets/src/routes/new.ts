@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 
 import { requireAuth, validateRequest } from '@estbndlt-tickets/common';
-import { Ticket } from '../../models/ticket';
+import { Ticket } from '../models/ticket';
 
 const router = express.Router();
 
