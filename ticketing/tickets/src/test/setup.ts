@@ -35,7 +35,7 @@ afterAll(async () => {
 global.signup = () => {
   // build jwt payload
   const payload = {
-    id: 'asdfasdf',
+    id: '65a0138b715ea591f85e1abb',
     email: 'test@test.com',
   };
 
