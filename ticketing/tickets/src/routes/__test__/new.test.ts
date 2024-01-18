@@ -2,6 +2,9 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
 
+// moved to test/setup.ts so other modules can also use this
+// jest.mock('../../nats-wrapper');
+
 it('has a route handler listening to /api/tickets for post requests', async () => {
   const rsp = await request(app).post('/api/tickets').send({});
 
