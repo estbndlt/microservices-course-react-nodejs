@@ -9,6 +9,8 @@ import { body } from 'express-validator';
 import mongoose from 'mongoose';
 import { Ticket } from '../models/ticket';
 import { Order, OrderStatus } from '../models/order';
+import { OrderCreatedPublisher } from '../events/publishers/order-cancelled-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -59,6 +61,16 @@ router.post(
     order.save();
 
     // publish an event saying order was created
+    new OrderCreatedPublisher(natsWrapper.client).publish({
+      id: order.id,
+      status: order.status,
+      userId: order.userId,
+      expiresAt: expiration.toISOString(),
+      ticket: {
+        id: order.ticket.id,
+        price: order.ticket.price,
+      },
+    });
 
     res.status(201).send(order);
   }
