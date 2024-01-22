@@ -1,11 +1,12 @@
 import { OrderStatus } from '@estbndlt-tickets/common';
 import mongoose, { Document, Model } from 'mongoose';
+import { TicketDocument } from './ticket';
 
 interface OrderAttrs {
   userId: string;
   status: OrderStatus;
   expiresAt: Date;
-  //   ticket: TicketDoc;
+  ticket: TicketDocument;
 }
 
 // An interface that describes the properties
@@ -14,7 +15,7 @@ interface OrderDocument extends Document {
   userId: string;
   status: OrderStatus;
   expiresAt: Date;
-  //   ticket: TicketDoc;
+  ticket: TicketDocument;
 }
 
 interface OrderModel extends Model<OrderDocument> {
