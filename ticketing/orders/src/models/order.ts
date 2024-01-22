@@ -2,6 +2,7 @@ import { OrderStatus } from '@estbndlt-tickets/common';
 import mongoose, { Document, Model } from 'mongoose';
 import { TicketDocument } from './ticket';
 
+export { OrderStatus };
 interface OrderAttrs {
   userId: string;
   status: OrderStatus;
