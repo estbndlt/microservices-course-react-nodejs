@@ -1,7 +1,6 @@
 import {
   BadRequestError,
   NotFoundError,
-  OrderStatus,
   requireAuth,
   validateRequest,
 } from '@estbndlt-tickets/common';
@@ -9,7 +8,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
 import { Ticket } from '../models/ticket';
-import { Order } from '../models/order';
+import { Order, OrderStatus } from '../models/order';
 
 const router = express.Router();
 
