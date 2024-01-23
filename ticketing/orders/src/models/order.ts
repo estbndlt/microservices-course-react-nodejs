@@ -1,6 +1,7 @@
 import { OrderStatus } from '@estbndlt-tickets/common';
 import mongoose, { Document, Model } from 'mongoose';
 import { TicketDocument } from './ticket';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 export { OrderStatus };
 interface OrderAttrs {
@@ -17,6 +18,9 @@ interface OrderDocument extends Document {
   status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDocument;
+
+  // __v is default, so add version field here so TS recognizes it
+  version: number;
 }
 
 interface OrderModel extends Model<OrderDocument> {
@@ -53,6 +57,9 @@ const orderSchema = new mongoose.Schema(
     },
   }
 );
+
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order(attrs);
