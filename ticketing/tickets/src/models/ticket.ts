@@ -24,6 +24,8 @@ interface TicketDocument extends Document {
 
   // __v is default, so add version field here so TS recognizes it
   version: number;
+
+  orderId?: string;
 }
 
 const ticketSchema = new mongoose.Schema(
