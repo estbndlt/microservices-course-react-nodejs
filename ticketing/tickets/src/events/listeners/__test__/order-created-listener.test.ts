@@ -36,5 +36,23 @@ const setup = async () => {
     ack: jest.fn(),
   };
 
-  return { listener, data, msg };
+  return { listener, ticket, data, msg };
 };
+
+it('sets the user id of the ticket', async () => {
+  const { listener, ticket, data, msg } = await setup();
+
+  await listener.onMessage(data, msg);
+
+  const updatedTicket = await Ticket.findById(ticket.id);
+
+  expect(updatedTicket!.orderId).toEqual(data.id);
+});
+
+it('acks the message', async () => {
+  const { listener, ticket, data, msg } = await setup();
+
+  await listener.onMessage(data, msg);
+
+  expect(msg.ack).toHaveBeenCalled();
+});
